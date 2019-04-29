@@ -1,0 +1,38 @@
+<html>
+<head>
+    
+<meta charset="utf-8">
+    <title> TP noté </title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    
+    
+    </head>
+    <body>
+    <form action ="exercice1.php" method="post">
+        <table id="maTable">
+        
+        <tr>
+            Nb: <input type ="number " name= "nb1" maxlength="50">
+            
+            Fonction: <SELECT NAME= function> 
+            <OPTION value =Addition> +</OPTION>
+            <OPTION value =Multiplication> *</OPTION>
+            <OPTION value =Division> /</OPTION>
+            <OPTION value =Soustraction> -</OPTION>
+            </SELECT>
+            
+         Nb: <input type ="number " name= "nb2" maxlength="50">
+            <td colspan="2">
+            <input type="submit" value="Valider"/>
+             </td>
+            </tr>
+                
+        </table>
+        
+        </form>
+        <div id="error"></div>
+    
+    
+    
+    </body>
+</html>
