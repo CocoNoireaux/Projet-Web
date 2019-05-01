@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    	<title>Article à vendre</title>
+    	<meta charset="utf-8">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    </head>
+<body>
+<script>
+$(document).ready(function()
+	{
+		var div;
+    
+		///on initialise div en fonction de la case cochée
+		if("input[type=checkbox][name=vetement".checked){
+			div="vtm";
+		}
+        if("input[type=checkbox][name=livre".checked){
+			div="lv";
+		}
+	       if("input[type=checkbox][name=livre".checked){
+			div="m";
+		}
+    
+         if("input[type=checkbox][name=sportetloisir".checked){
+			div="s";
+		}
+		   // la zone texte est caché par défaut
+		$('#vtm').hide();
+        $('#lv').hide();
+         $('#m').hide();
+         $('#s').hide();
+		  
+    
+//div affiché en fonction de la case cochée
+		$("input[type=checkbox][name=vetement").change(function() {
+			if(this.checked) {
+
+				$('#vtm').toggle();
+				
+			} 
+			else{
+				$('#vtm').hide();
+			}
+		}); 
+    	$("input[type=checkbox][name=livre").change(function() {
+			if(this.checked) {
+    	$('#lv').toggle();
+				
+			} 
+			else{
+	$('#lv').hide();
+			}
+		}); 
+	
+	 $("input[type=checkbox][name=musique").change(function() {
+			if(this.checked) {
+	$('#m').toggle();
+				
+			} 
+			else{
+	$('#m').hide();
+			}
+		});
+    
+    $("input[type=checkbox][name=sportetloisir").change(function() {
+			if(this.checked) {
+   	$('#s').toggle();
+					} 
+			else{
+	$('#s').hide();
+			}
+		}); 
+	});
+
+		  
+</script> 
+<form >
+<table>
+<tr>
+<div>
+    <h1>Que voulez-vous vendre?</h1>
+    	<input type="checkbox" id="vetement" name="vetement" value="vetement">
+				<label for="vetement">Vêtement</label> <br>
+	
+				<input type="checkbox" id="livre" name="livre" value="livre">
+				<label for="livre">Livre</label> <br>
+				<input type="checkbox" id="musique" name="musique" value="musique">
+				<label for="musique">Musique</label> <br>
+                <input type="checkbox" id="sportetloisir" name="sportetloisir" value="sportsportetloisir">
+				<label for="sportetloisir">Sport et Loisir</label> <br>
+				
+</div>
+
+</tr>
+		
+</table>
+</form>
+    
+      
+	<form action="articleavendre.php" method="post">
+        
+            <div id="vtm">
+		<table>
+			<tr>
+				<td>Nom: </td>
+				<td><input type="text" name="nom"></td>
+			</tr>
+			<tr>
+				<td>Photo: </td>
+				<td><input type="text" name="photo"></td>
+			</tr>
+			<tr>
+				<td>Description: </td>
+				<td><input type="text" name="description"></td>
+			</tr>
+            <tr>
+				<td>Vidéo: </td>
+				<td><input type="text" name="video"></td>
+			</tr>
+			<tr>
+				<td>Prix: </td>
+				<td><input type="number" name="prix" ></td>
+			</tr>
+			<tr>
+                <td> Sexe: </td>
+					<td><select id="sexe">
+						<option value="">Choisissez un sexe</option>
+						<option value="homme"> Homme</option>
+						<option value="femme"> Femme</option>
+					</select></td>
+				
+            </tr>
+            <tr>
+                <td> Taille: </td>
+					<td><select id="taille">
+						<option value="">Choisissez une taille</option>
+						<option value="s"> S</option>
+						<option value="m"> M</option>
+                        <option value="l"> L</option>
+					</select></td>
+				
+            </tr>
+            <br>
+            	<tr>
+				<td  ><input type="submit" value="Submit" name="bouton"> </td>
+			</tr>
+        <br>
+        </table>
+           
+    </div>
+ <div id="lv">
+
+        <table>
+        	<tr>
+				<td>Nom: </td>
+				<td><input type="text" name="nom"></td>
+			</tr>
+            <tr>
+				<td>Auteur: </td>
+				<td><input type="text" name="auteur"></td>
+			</tr>
+             <tr>
+				<td>Année: </td>
+				<td><input type="text" name="annee"></td>
+			</tr>
+			<tr>
+				<td>Photo: </td>
+				<td><input type="text" name="photo"></td>
+			</tr>
+			<tr>
+				<td>Description: </td>
+				<td><input type="text" name="description"></td>
+			</tr>
+            <tr>
+				<td>Vidéo: </td>
+				<td><input type="text" name="video"></td>
+			</tr>
+			<tr>
+				<td>Prix: </td>
+				<td><input type="number" name="prix" ></td>
+			</tr>
+
+          
+            <br>
+            	<tr>
+				<td  ><input type="submit" value="Submit" name="bouton"> </td>
+			</tr>
+            <br>
+            </table>
+    
+        
+           
+    </div>
+     <div id="m">
+
+        <table>
+      
+            	<tr>
+				<td>Nom: </td>
+				<td><input type="text" name="nom"></td>
+			</tr> 
+            	<tr>
+				<td>Auteur: </td>
+				<td><input type="text" name="auteur"></td>
+			</tr>
+               	<tr>
+				<td>Année: </td>
+				<td><input type="text" name="annee"></td>
+			</tr>          	
+			<tr>
+				<td>Photo: </td>
+				<td><input type="text" name="photo"></td>
+			</tr>
+			<tr>
+				<td>Description: </td>
+				<td><input type="text" name="description"></td>
+			</tr>
+            <tr>
+				<td>Vidéo: </td>
+				<td><input type="text" name="video"></td>
+			</tr>
+			<tr>
+				<td>Prix: </td>
+				<td><input type="number" name="prix" ></td>
+			</tr>
+			
+            <br>
+            	<tr>
+				<td  ><input type="submit" value="Submit" name="bouton"> </td>
+			</tr>
+            <br>
+            </table>
+    
+        
+           
+    </div>
+        
+             <div id="s">
+
+        <table>
+            <tr>
+            <td> Nom: </td>
+            <td> <input type=text name="nom"></td>
+            </tr>
+             <tr>
+            <td> Photo: </td>
+            <td> <input type=text name="photo"></td>
+            </tr>
+            <tr>
+              <td> Description: </td>
+            <td> <input type=text name="description"></td>
+            </tr>
+             <tr>
+              <td> Prix: </td>
+            <td> <input type=text name="prix"></td>
+            </tr>
+               <tr>
+                <td> Catégorie: </td>
+					<td><select id="categorie">
+						<option value="">Choisissez une catégorie</option>
+						<option value="natation"> natation</option>
+						<option value="tennis"> tennis</option>
+                        <option value="ski"> ski</option>
+                        <option value="musculation"> musculation</option>
+					</select></td>
+				
+            </tr>
+            <br>
+            	<tr>
+				<td  ><input type="submit" value="Submit" name="bouton"> </td>
+			</tr>
+            <br>
+            </table>
+    
+        
+           
+    </div>
+    </form>
+    </body>
+    </html>
