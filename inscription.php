@@ -1,25 +1,23 @@
 <?php
 
-$database="espace_membre";
-
-//connecter l'utilisateur dans BDD
-$db_handle=mysqli_connect('localhost','root','');
-$db_found=mysqli_select_db($db_handle,$database);
-
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=eceshop', 'root', '');
 
 if(isset($_POST['forminscription']))
 {
-	$pseudo = htmlspecialchars($_POST['pseudo']);
+	$nom = htmlspecialchars($_POST['nom']);
+	$prenom = htmlspecialchars($_POST['prenom']);
 	$email = htmlspecialchars($_POST['email']);
 	$email2 = htmlspecialchars($_POST['email2']);
 	$motdepasse = sha1($_POST['motdepasse']);
 	$motdepasse2 = sha1($_POST['motdepasse2']);
+	$type_utilisateur = htmlspecialchars($_POST['type_utilisateur']);
+	$photo_profil = htmlspecialchars($_POST['photo_profil']);
 
-	if(!empty($_POST['pseudo']) AND !empty($_POST['email']) AND !empty($_POST['email2']) AND !empty($_POST['motdepasse']) AND !empty($_POST['motdepasse2']) )
+	if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['email']) AND !empty($_POST['email2']) AND !empty($_POST['motdepasse']) AND !empty($_POST['motdepasse2'] AND !empty($_POST['type_utilisateur']) AND !empty($_POST['photo_profil'])) )
 	{
 		
-		$pseudolength = strlen($pseudo);
-		if($pseudolength <= 255)
+		$nomlength = strlen($nom);
+		if($nomlength <= 255)
 		{
 			if($email == $email2)
 			{
@@ -28,24 +26,11 @@ if(isset($_POST['forminscription']))
 
 					if($motdepasse == $motdepasse2)
 					{
-						if ($db_found)
-						{
-							$sql="INSERT INTO membres(pseudo, email, motdepasse) VALUES ('$pseudo','$email','$motdepasse')";
-
-							$result = mysqli_query($db_handle, $sql);
-							$erreur = "L'ajout a bien été effectué <a href=\"connexion.php\">Me connecter</a>";
-
-						}
-
-						else 
-						{
-							echo "data base not found";
-						}
-
-
-						mysqli_close($db_handle);
-						
+						$insertmbr = $bdd->prepare("INSERT INTO utilisateur(nom, prenom, email, motdepasse, type_utilisateur, photo_profil) VALUES (?, ?, ?, ?, ?, ?");
+						$insertmbr->execute(array($nom, $prenom, $email, $motdepasse, $type_utilisateur, $photo_profil));
+						$erreur = "Votre compte a été créé <a href=\"connexion.php\">Me connecter</a>";
 					}
+					
 					else
 					{
 						$erreur = "Vos mot de passe ne correspondent pas !";
@@ -79,7 +64,7 @@ if(isset($_POST['forminscription']))
 
 <html>
 <head>
-	<title>Membres</title>
+	<title>Utilisateurs</title>
 	<meta charset="utf-8">
 </head>
 <body>
@@ -89,11 +74,20 @@ if(isset($_POST['forminscription']))
 			<table>
 				<tr>
 					<td align="right">
-						<label for="pseudo">Pseudo :</label>
+						<label for="nom">Nom :</label>
 					</td>
 
 					<td>
-						<input type="text" placeholder="Votre pseudo" id= "pseudo" name="pseudo" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>">
+						<input type="text" placeholder="Votre nom" id= "nom" name="nom" value="<?php if(isset($nom)) { echo $nom; } ?>">
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<label for="prenom">Prenom :</label>
+					</td>
+
+					<td>
+						<input type="text" placeholder="Votre prenom" id= "prenom" name="prenom" value="<?php if(isset($prenom)) { echo $prenom; } ?>">
 					</td>
 				</tr>
 
@@ -132,6 +126,24 @@ if(isset($_POST['forminscription']))
 
 					<td>
 						<input type="password" placeholder="Confirmation mdp" id= "motdepasse2" name="motdepasse2">
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<label for="type_utilisateur">Type Utilisateur :</label>
+					</td>
+
+					<td>
+						<input type="text" placeholder="Vendeur/Acheteur/Admin" id= "type_utilisateur" name="type_utilisateur" value="<?php if(isset($type_utilisateur)) { echo $type_utilisateur; } ?>">
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<label for="photo_profil">Photo profil :</label>
+					</td>
+
+					<td>
+						<input type="text" placeholder="Votre photo" id= "photo_profil" name="photo_profil" value="<?php if(isset($photo_profil)) { echo $photo_profil; } ?>">
 					</td>
 				</tr>
 				<tr>
